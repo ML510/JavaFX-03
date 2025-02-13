@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RejisterFromController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#093761" height="403.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="97.0" />
+      <Label alignment="CENTER" layoutX="96.0" layoutY="14.0" prefHeight="82.0" prefWidth="506.0" text="Register From">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtName" layoutX="282.0" layoutY="117.0" text="user name" />
+      <JFXTextField fx:id="txtEmail" layoutX="282.0" layoutY="162.0" text="email" />
+      <JFXTextField fx:id="txtPasswoed" layoutX="282.0" layoutY="213.0" text="password" />
+      <JFXTextField fx:id="txtCPasswoed" layoutX="282.0" layoutY="262.0" text="comform password" />
+      <JFXButton layoutX="505.0" layoutY="337.0" onAction="#btnRejisterOnAction" style="-fx-background-color: #0c2461;" stylesheets="@../css/style.css" text="Rejister" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
