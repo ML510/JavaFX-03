@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogingFromController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#218c74" height="400.0" stroke="BLACK" strokeType="INSIDE" width="202.0" />
+      <Label alignment="CENTER" layoutY="60.0" prefHeight="53.0" prefWidth="202.0" text="Thoga Kade" textFill="#fffdfd">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="175.0" fitWidth="202.0" layoutX="14.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/photo%20-%2001.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="33.0" layoutY="334.0" prefHeight="25.0" prefWidth="136.0" text="thogakade@gmail.com" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="202.0" layoutY="43.0" prefHeight="70.0" prefWidth="397.0" text="Login">
+         <font>
+            <Font name="System Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtEmail" layoutX="333.0" layoutY="151.0" text="email" />
+      <JFXPasswordField fx:id="txtPassword" layoutX="333.0" layoutY="234.0" text="password" />
+      <JFXButton alignment="CENTER_RIGHT" layoutX="366.0" layoutY="319.0" onAction="#btnLoginOnAction" prefHeight="30.0" prefWidth="69.0" style="-fx-background-color: #ffb142;" text="Login">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </JFXButton>
+      <Hyperlink layoutX="421.0" layoutY="273.0" onAction="#hyperRegisterOnAction" text="Register" />
+      <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="366.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/photo%20-%2002.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="43.0" fitWidth="44.0" layoutX="459.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/photo%20-%2003.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
