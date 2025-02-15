@@ -6,7 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import model.User;
+import org.jasypt.util.text.BasicTextEncryptor;
 
+import java.nio.file.attribute.BasicFileAttributes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,6 +39,13 @@ public class RejisterFromController {
             Connection connection = DBConnection.getInstance().getConnection();
             ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM users WHERE email="+"'"+txtEmail.getText()+"'");
 
+//------------------------------------ Password encryptor --------------------------------------------
+            String key = "##123##";
+
+            BasicTextEncryptor basicTextEncryptor = new BasicTextEncryptor();
+            basicTextEncryptor.setPassword(key);
+
+
             System.out.println("email 1");
 
             if (!resultSet.next()){
@@ -52,7 +61,8 @@ public class RejisterFromController {
 
                 psTm.setString(1,user.getUserName());
                 psTm.setString(2,user.getEmail());
-                psTm.setString(3, user.getPassword());
+                //------------------------------------ Password encryptor --------------------------------------------
+                psTm.setString(3, basicTextEncryptor.encrypt(user.getPassword()));
 
                 System.out.println("email 3");
 

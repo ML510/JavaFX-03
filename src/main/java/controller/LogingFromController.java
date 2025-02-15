@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.User;
+import org.jasypt.util.text.BasicTextEncryptor;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -31,6 +32,12 @@ public class LogingFromController {
         Connection connection = DBConnection.getInstance().getConnection();
         ResultSet resultSet = connection.createStatement().executeQuery(SQL);
 
+//------------------------------------ Password decryptor --------------------------------------------
+        String key = "##123##";
+
+        BasicTextEncryptor basicTextEncryptor = new BasicTextEncryptor();
+        basicTextEncryptor.setPassword(key);
+
         if (resultSet.next()){
             User user = new User(
                     resultSet.getString(2),
@@ -39,7 +46,8 @@ public class LogingFromController {
             );
             System.out.println(user);
 
-            if (user.getPassword().equals(txtPassword.getText())){
+            //------------------------------------ Password decryptor --------------------------------------------
+            if (basicTextEncryptor.decrypt(user.getPassword()).equals(txtPassword.getText())){
                 Stage stage = new Stage();
                 stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"))));
                 stage.show();
