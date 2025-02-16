@@ -34,7 +34,15 @@ public class DashBoardFromController {
     }
 
     @FXML
-    void btnOrderFormOnAction(ActionEvent event) {
+    void btnOrderFormOnAction(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/order_form.fxml");
+
+        assert resource != null;
+
+        Parent load = FXMLLoader.load(resource);
+
+        loadFormContent.getChildren().clear();
+        loadFormContent.getChildren().add(load);
 
     }
 

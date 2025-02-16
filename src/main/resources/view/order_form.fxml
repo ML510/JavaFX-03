@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderFromController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ed4c67" height="65.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" width="601.0" />
+      <Label alignment="CENTER" layoutY="-1.0" prefHeight="65.0" prefWidth="601.0" text="Order Form">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtName" layoutX="205.0" layoutY="103.0" prefHeight="25.0" prefWidth="142.0" text="Customer Name" />
+      <JFXTextField fx:id="txtAddress" layoutX="393.0" layoutY="103.0" prefHeight="25.0" prefWidth="187.0" text="Address" />
+      <JFXTextField fx:id="txtDescription" layoutX="159.0" layoutY="154.0" prefHeight="25.0" prefWidth="117.0" text="Description" />
+      <JFXTextField fx:id="txtStock" layoutX="288.0" layoutY="154.0" prefHeight="25.0" prefWidth="105.0" text="Stock" />
+      <JFXTextField fx:id="txtUnitPrice" layoutX="400.0" layoutY="154.0" prefHeight="25.0" prefWidth="105.0" text="Unit Price" />
+      <JFXComboBox fx:id="comboItemCode" layoutX="31.0" layoutY="154.0" prefHeight="25.0" prefWidth="117.0" promptText="Item Code" />
+      <JFXComboBox fx:id="cmboCustomerId" layoutX="31.0" layoutY="103.0" prefHeight="25.0" prefWidth="117.0" promptText="Customer ID" />
+      <Separator layoutX="14.0" layoutY="144.0" prefHeight="3.0" prefWidth="575.0" />
+      <JFXButton layoutX="515.0" layoutY="200.0" onAction="#btnAddToCartOnAction" style="-fx-background-color: #12CBC4;" text="Add To Cart">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tblOrder" layoutX="5.0" layoutY="229.0" prefHeight="128.0" prefWidth="593.0">
+        <columns>
+          <TableColumn fx:id="colItemCode" prefWidth="92.0" text="Item Code" />
+          <TableColumn fx:id="colDescriotion" prefWidth="131.0" text="Description" />
+            <TableColumn fx:id="colQty" prefWidth="118.0" text="QTY On Hand" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="132.0" text="Unit Price" />
+            <TableColumn fx:id="colTotal" prefWidth="119.0" text="Total" />
+        </columns>
+      </TableView>
+      <JFXTextField fx:id="txtOrderId" layoutX="516.0" layoutY="64.0" prefHeight="18.0" prefWidth="80.0" text="Order ID" />
+      <JFXButton layoutX="515.0" layoutY="361.0" onAction="#btnPlaceOrderOnAction" style="-fx-background-color: #006266;" text="Place Order" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="14.0" layoutY="14.0" text="Day : " textFill="WHITE" />
+      <Label fx:id="lblDay" layoutX="49.0" layoutY="14.0" text="DD-MM-YYY" textFill="WHITE" />
+      <Label fx:id="lblTime" layoutX="53.0" layoutY="31.0" text="00:00:00" textFill="WHITE" />
+      <Label layoutX="14.0" layoutY="31.0" text="Time : " textFill="WHITE" />
+      <Label layoutX="18.0" layoutY="365.0" text="Net Total :- " textFill="#b21212">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblNetTotal" layoutX="102.0" layoutY="365.0" text="0.00" textFill="#ab0d0d">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
