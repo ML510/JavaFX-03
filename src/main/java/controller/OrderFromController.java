@@ -85,6 +85,7 @@ public class OrderFromController implements Initializable {
 
     ObservableList<CartTM> cartTMS = FXCollections.observableArrayList();
 
+// ###################### Load Order Table ################################
     @FXML
     public void btnAddToCartOnAction(ActionEvent event) {
 
@@ -97,6 +98,19 @@ public class OrderFromController implements Initializable {
         cartTMS.add(new CartTM(code,description,qtyOnHand,unitPrice,total));
 
         tblOrder.setItems(cartTMS);
+
+        calcNetTotal();
+    }
+
+    private void calcNetTotal(){
+        Double netTotal = 0.0;
+
+        for (CartTM tm : cartTMS){
+            netTotal+=tm.getTotal();
+        }
+
+        lblNetTotal.setText(netTotal.toString());
+
     }
 
     @FXML
@@ -203,6 +217,8 @@ public class OrderFromController implements Initializable {
         colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
     }
+
+
 
 
 
