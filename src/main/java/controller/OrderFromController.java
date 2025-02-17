@@ -15,7 +15,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import model.CartTM;
 import model.Customer;
 import model.Item;
 
@@ -23,7 +25,6 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class OrderFromController implements Initializable {
@@ -60,7 +61,7 @@ public class OrderFromController implements Initializable {
     private Label lblTime;
 
     @FXML
-    private TableView<?> tblOrder;
+    private TableView<CartTM> tblOrder;
 
     @FXML
     private JFXTextField txtAddress;
@@ -82,9 +83,20 @@ public class OrderFromController implements Initializable {
 
     public JFXTextField txtQty;
 
-    @FXML
-    void btnAddToCartOnAction(ActionEvent event) {
+    ObservableList<CartTM> cartTMS = FXCollections.observableArrayList();
 
+    @FXML
+    public void btnAddToCartOnAction(ActionEvent event) {
+
+        String code = cmboCustomerId.getValue().toString();
+        String description = txtDescription.getText();
+        Integer qtyOnHand = Integer.parseInt(txtQty.getText());
+        Double unitPrice = Double.parseDouble(txtUnitPrice.getText());
+        Double total = qtyOnHand * unitPrice;
+
+        cartTMS.add(new CartTM(code,description,qtyOnHand,unitPrice,total));
+
+        tblOrder.setItems(cartTMS);
     }
 
     @FXML
@@ -183,6 +195,13 @@ public class OrderFromController implements Initializable {
                 searchItemDate(newValue.toString());
             }
         });
+
+        // --------------------------- Colum Binding ------------------------------------
+        colItemCode.setCellValueFactory(new PropertyValueFactory<>("itemCode"));
+        colDescriotion.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qtyOnHand"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
     }
 
 
