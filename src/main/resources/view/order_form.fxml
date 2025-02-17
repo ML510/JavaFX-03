@@ -11,7 +11,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderFromController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ed4c67" height="65.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" width="601.0" />
@@ -20,11 +19,11 @@
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtName" layoutX="205.0" layoutY="103.0" prefHeight="25.0" prefWidth="142.0" text="Customer Name" />
-      <JFXTextField fx:id="txtAddress" layoutX="393.0" layoutY="103.0" prefHeight="25.0" prefWidth="187.0" text="Address" />
-      <JFXTextField fx:id="txtDescription" layoutX="159.0" layoutY="154.0" prefHeight="25.0" prefWidth="117.0" text="Description" />
-      <JFXTextField fx:id="txtStock" layoutX="288.0" layoutY="154.0" prefHeight="25.0" prefWidth="105.0" text="Stock" />
-      <JFXTextField fx:id="txtUnitPrice" layoutX="400.0" layoutY="154.0" prefHeight="25.0" prefWidth="105.0" text="Unit Price" />
+      <JFXTextField fx:id="txtName" disable="true" layoutX="205.0" layoutY="103.0" prefHeight="25.0" prefWidth="142.0" text="Customer Name" />
+      <JFXTextField fx:id="txtAddress" disable="true" layoutX="393.0" layoutY="103.0" prefHeight="25.0" prefWidth="187.0" text="Address" />
+      <JFXTextField fx:id="txtDescription" disable="true" layoutX="159.0" layoutY="154.0" prefHeight="25.0" prefWidth="117.0" text="Description" />
+      <JFXTextField fx:id="txtStock" disable="true" layoutX="288.0" layoutY="154.0" prefHeight="25.0" prefWidth="105.0" text="Stock" />
+      <JFXTextField fx:id="txtUnitPrice" disable="true" layoutX="400.0" layoutY="154.0" prefHeight="25.0" prefWidth="105.0" text="Unit Price" />
       <JFXComboBox fx:id="comboItemCode" layoutX="31.0" layoutY="154.0" prefHeight="25.0" prefWidth="117.0" promptText="Item Code" />
       <JFXComboBox fx:id="cmboCustomerId" layoutX="31.0" layoutY="103.0" prefHeight="25.0" prefWidth="117.0" promptText="Customer ID" />
       <Separator layoutX="14.0" layoutY="144.0" prefHeight="3.0" prefWidth="575.0" />
@@ -62,5 +61,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <JFXTextField fx:id="txtQty" layoutX="516.0" layoutY="154.0" prefHeight="18.0" prefWidth="80.0" text="QTY" />
    </children>
 </AnchorPane>

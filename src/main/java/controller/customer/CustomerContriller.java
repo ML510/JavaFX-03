@@ -1,6 +1,8 @@
 package controller.customer;
 
 import db.DBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Customer;
 
 import java.sql.Connection;
@@ -26,9 +28,26 @@ public class CustomerContriller implements CustomerService{
         return false;
     }
 
+// *************************** Search Customer *********************************
     @Override
     public Customer searchCustomer(String id) {
-        return null;
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM customer WHERE id=" +"'"+ id +"'");
+            resultSet.next();
+
+            System.out.println("111");
+
+            return new Customer(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getDouble(4)
+            );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -55,5 +74,15 @@ public class CustomerContriller implements CustomerService{
         }
 
         return customerArrayList;
+    }
+
+    public ObservableList<String> getCustomerIds(){
+        List<Customer> all = getAll();
+        ObservableList<String> customerIds = FXCollections.observableArrayList();
+
+        all.forEach(customer -> {
+            customerIds.add(customer.getId());
+        });
+        return customerIds;
     }
 }
