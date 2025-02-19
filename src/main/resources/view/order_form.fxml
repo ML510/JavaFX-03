@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderFromController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.order.OrderFromController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ed4c67" height="65.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" width="601.0" />
       <Label alignment="CENTER" layoutY="-1.0" prefHeight="65.0" prefWidth="601.0" text="Order Form">
@@ -62,5 +62,10 @@
          </font>
       </Label>
       <JFXTextField fx:id="txtQty" layoutX="516.0" layoutY="154.0" prefHeight="18.0" prefWidth="80.0" text="QTY" />
+      <JFXButton layoutX="409.0" layoutY="361.0" onAction="#btnCommitOnAction" style="-fx-background-color: #12CBC4;" text="Commit">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

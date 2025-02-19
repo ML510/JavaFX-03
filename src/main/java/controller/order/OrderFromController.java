@@ -1,9 +1,10 @@
-package controller;
+package controller.order;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.customer.CustomerContriller;
 import controller.item.ItemController;
+import db.DBConnection;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -12,19 +13,22 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
-import model.CartTM;
-import model.Customer;
-import model.Item;
+import model.*;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class OrderFromController implements Initializable {
@@ -87,9 +91,9 @@ public class OrderFromController implements Initializable {
 
 // ###################### Load Order Table ################################
     @FXML
-    public void btnAddToCartOnAction(ActionEvent event) {
+    void btnAddToCartOnAction(ActionEvent event) {
 
-        String code = cmboCustomerId.getValue().toString();
+        String code = comboItemCode.getValue().toString();
         String description = txtDescription.getText();
         Integer qtyOnHand = Integer.parseInt(txtQty.getText());
         Double unitPrice = Double.parseDouble(txtUnitPrice.getText());
@@ -102,6 +106,7 @@ public class OrderFromController implements Initializable {
         calcNetTotal();
     }
 
+// --------------- Set Net Total -------------------------
     private void calcNetTotal(){
         Double netTotal = 0.0;
 
@@ -114,15 +119,41 @@ public class OrderFromController implements Initializable {
     }
 
     @FXML
-    void btnPlaceOrderOnAction(ActionEvent event) {
+    void btnPlaceOrderOnAction(ActionEvent event) throws SQLException {
 
+        // ------ Create Order Object And OrderDetail Object ---------
+        String orderId = txtOrderId.getText();
+        String date = lblDay.getText();
+        String customerId = cmboCustomerId.getValue().toString();
+
+        List<OrderDetail> orderDetails = new ArrayList<>();
+
+        cartTMS.forEach(cartTM -> {
+            orderDetails.add(new OrderDetail(
+                    orderId,
+                    cartTM.getItemCode(),
+                    cartTM.getQtyOnHand(),
+                    cartTM.getUnitPrice()
+            ));
+        });
+
+        Order order = new Order(orderId, date, customerId, orderDetails);
+
+        System.out.println(order);
+
+        // --------- Order Object Parsing -----------------------------
+        if(new OrderController().placeOrder(order)){
+            new Alert(Alert.AlertType.INFORMATION,"Order Placed !").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Order Not Placed !").show();
+        }
     }
 
     private void setDateAndTime(){
 
         //------------------ Set Date ------------------------------
         Date date = new Date();
-        SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
         String format = dataFormat.format(date);
         lblDay.setText(format);
 
@@ -219,8 +250,10 @@ public class OrderFromController implements Initializable {
     }
 
 
+    public void btnCommitOnAction(ActionEvent actionEvent) throws SQLException {
 
+        Connection connection = DBConnection.getInstance().getConnection();
+        connection.commit();
 
-
-
+    }
 }
