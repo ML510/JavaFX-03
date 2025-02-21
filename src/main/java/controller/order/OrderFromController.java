@@ -2,7 +2,6 @@ package controller.order;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import controller.customer.CustomerContriller;
 import controller.item.ItemController;
 import db.DBConnection;
 import javafx.animation.Animation;
@@ -189,16 +188,16 @@ public class OrderFromController implements Initializable {
 
         // ------------ Step 02 --------------------------------
 
-        cmboCustomerId.setItems(new CustomerContriller().getCustomerIds());
+//        cmboCustomerId.setItems(new CustomerContriller().getCustomerIds());
     }
 
     private void searchCustomerDate(String customerId) {
 
-        Customer customer = new CustomerContriller().searchCustomer(customerId);
-        System.out.println(customer);
-
-        txtName.setText(customer.getName());
-        txtAddress.setText(customer.getAddress());
+//        Customer customer = new CustomerContriller().searchCustomer(customerId);
+//        System.out.println(customer);
+//
+//        txtName.setText(customer.getName());
+//        txtAddress.setText(customer.getAddress());
     }
 
 // ######################## Load Item Ids #################################

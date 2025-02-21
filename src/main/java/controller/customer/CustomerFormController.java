@@ -11,6 +11,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Customer;
+import service.BoFactory;
+import service.custom.CustomerBo;
+import service.custom.impl.CustomerBoImpl;
+import util.BoType;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -45,10 +49,12 @@ public class CustomerFormController {
     @FXML
     private TextField txtSalary;
 
+    CustomerBo customerBo = BoFactory.getInstance().getBoType(BoType.CUSTOMER);
+
     @FXML
     void btnAddOnAction(ActionEvent event) {
 
-        boolean isCustomerAdd = new CustomerContriller().addCustomer(
+        boolean isCustomerAdd = customerBo.addCustomer(
                 new Customer(
                         txtId.getText(),
                         txtName.getText(),
@@ -97,13 +103,13 @@ public class CustomerFormController {
 //        List<Customer> all = new CustomerContriller().getAll();
 //        all.forEach(customer->{
 
-        new CustomerContriller().getAll().forEach(customer->{
-            customerObservableList.add(customer);
-        });
-
-        tblCustomer.setItems(customerObservableList);
-
-        System.out.println(new CustomerContriller().getAll());
+//        new CustomerContriller().getAll().forEach(customer->{
+//            customerObservableList.add(customer);
+//        });
+//
+//        tblCustomer.setItems(customerObservableList);
+//
+//        System.out.println(new CustomerContriller().getAll());
     }
 
 }
